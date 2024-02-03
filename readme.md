@@ -6,72 +6,37 @@ spesifikasi
 
 - Golang v 1.21.4
 - [Fiber](https://adminlte.io/)
-- [Windows api wrapper (github.com/lxn/win)](https://github.com/lxn/win) 
 - [Keyboard event (github.com/micmonay/keybd_event)](https://github.com/micmonay/keybd_event) 
 
-## Api
-membuka aplikasi (foreground)
 
-    <?php
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, [
-        CURLOPT_PORT => "3001",
-        CURLOPT_URL => "http://localhost:3001/open",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\"app_name\":\"Aplikasi Registrasi Sidik Jari\",\"no_indetitas\":\"ini string\"}",
-        ]);
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-        echo "cURL Error #:" . $err;
-        } else {
-        echo $response;
-        }
-
-menutup aplikasi (minimize)
-
-    <?php
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, [
-    CURLOPT_PORT => "3001",
-    CURLOPT_URL => "http://localhost:3001/close",
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "POST",
-    CURLOPT_POSTFIELDS => "{\"app_name\":\"Aplikasi Registrasi Sidik Jari\"}",
-    ]);
-
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-
-    curl_close($curl);
-
-    if ($err) {
-    echo "cURL Error #:" . $err;
-    } else {
-    echo $response;
-    }
-
-
-## Build
+## Install
 untuk membuat .exe
 
-    go build -o service-sidikjari-bpjs.exe main.go
+    go build -o FingerprintRestapi.exe main.go
 
-jalankan di pc yang terpasang aplikasi sidik jari bpjs.
+letakan sejajar dengan aplikasi fingerprint BPJS (After.exe)
+
+## Api spec
+cek api
+
+    curl --location --request POST 'http://localhost:3005/ping'
+
+membuka aplikasi 
+
+    curl --location 'http://localhost:3005/open' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+    "app_name": "After.exe",
+    "username": "arif@gmail.com",
+    "password": "Arif Kurniawan",
+    "no_bpjs": "12112"
+    }'
+
+menutup aplikasi
+
+    curl --location 'http://localhost:3005/close' \
+    --header 'Content-Type: application/json' \
+    --data '{
+    "app_name": "After.exe"
+    }'
+
