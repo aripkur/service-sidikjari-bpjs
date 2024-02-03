@@ -69,11 +69,8 @@ func main() {
 		}
 		filePath := getExePath(request.AppName)
 		cmd := exec.Command("TASKKILL", "/IM", filepath.Base(filePath), "/F")
-		err := cmd.Run()
-		if err != nil {
-			return c.Status(500).JSON(fiber.Map{"message": err.Error()})
-		}
-		return c.Status(500).JSON(fiber.Map{"message": "success"})
+		_ = cmd.Run()
+		return c.Status(200).JSON(fiber.Map{"message": "success"})
 	})
 
 	err := app.Listen(":3005")
