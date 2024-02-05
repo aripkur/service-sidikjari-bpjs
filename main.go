@@ -64,7 +64,7 @@ func main() {
 		time.Sleep(100 * time.Millisecond)
 		_ = pressEnter()
 
-		time.Sleep(2000 * time.Millisecond)
+		time.Sleep(5000 * time.Millisecond)
 		_ = gkeybd.TypeStr(request.NoBpjs)
 
 		return c.Status(500).JSON(fiber.Map{"message": "success"})
