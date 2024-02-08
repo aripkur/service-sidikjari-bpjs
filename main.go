@@ -52,12 +52,6 @@ func main() {
 		_ = pressTab()
 		time.Sleep(100 * time.Millisecond)
 
-		//harus ada symbol dan Huruf besar
-		_ = pressBintang()
-		time.Sleep(100 * time.Millisecond)
-		_ = pressB()
-		time.Sleep(100 * time.Millisecond)
-
 		_ = gkeybd.TypeStr(request.Password)
 		time.Sleep(100 * time.Millisecond)
 		_ = pressTab()
@@ -115,36 +109,6 @@ func pressEnter() error {
 		return err
 	}
 	kb.SetKeys(keybd_event.VK_ENTER)
-	err = kb.Launching()
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-// press *
-func pressBintang() error {
-	kb, err := keybd_event.NewKeyBonding()
-	if err != nil {
-		return err
-	}
-	kb.HasSHIFT(true)
-	kb.SetKeys(keybd_event.VK_8)
-	err = kb.Launching()
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-// press B
-func pressB() error {
-	kb, err := keybd_event.NewKeyBonding()
-	if err != nil {
-		return err
-	}
-	kb.HasSHIFT(true)
-	kb.SetKeys(keybd_event.VK_B)
 	err = kb.Launching()
 	if err != nil {
 		return err

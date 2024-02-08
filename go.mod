@@ -5,7 +5,6 @@ go 1.21.4
 require (
 	github.com/GuoFlight/gkeybd v0.0.1
 	github.com/gofiber/fiber/v2 v2.52.0
-	github.com/lxn/win v0.0.0-20210218163916-a377121e959e
 	github.com/micmonay/keybd_event v1.1.2
 )
 
@@ -22,3 +21,5 @@ require (
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	golang.org/x/sys v0.15.0 // indirect
 )
+
+replace github.com/GuoFlight/gkeybd => github.com/aripkur/gkeybd v0.0.0-20231209065952-3aeb35a19c3c
