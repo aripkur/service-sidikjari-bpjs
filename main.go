@@ -61,7 +61,7 @@ func main() {
 		time.Sleep(3000 * time.Millisecond)
 		_ = gkeybd.TypeStr(request.NoBpjs)
 
-		return c.Status(500).JSON(fiber.Map{"message": "success"})
+		return c.Status(200).JSON(fiber.Map{"message": "success"})
 	})
 
 	app.Post("/close", func(c *fiber.Ctx) error {
