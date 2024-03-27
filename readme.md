@@ -5,7 +5,7 @@ Rest api untuk membuka aplikasi sidik jari bpjs (windows desktop). Bisa digunaka
 spesifikasi
 
 - Golang v 1.21.4
-- [Fiber](https://adminlte.io/)
+- Fiber
 - [Keyboard event (github.com/micmonay/keybd_event)](https://github.com/micmonay/keybd_event) 
 
 
