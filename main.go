@@ -45,21 +45,17 @@ func main() {
 		if err != nil {
 			return c.Status(500).JSON(fiber.Map{"message": err.Error()})
 		}
-		time.Sleep(5000 * time.Millisecond)
-
-		_ = gkeybd.TypeStr(request.Username)
-		time.Sleep(100 * time.Millisecond)
-		_ = pressTab()
-		time.Sleep(100 * time.Millisecond)
-
-		_ = gkeybd.TypeStr(request.Password)
-		time.Sleep(100 * time.Millisecond)
-		_ = pressTab()
-		time.Sleep(100 * time.Millisecond)
-		_ = pressEnter()
-
 		time.Sleep(3000 * time.Millisecond)
-		_ = gkeybd.TypeStr(request.NoBpjs)
+
+		gkeybd.TypeStr(request.Username)
+		pressTab()
+
+		gkeybd.TypeStr(request.Password)
+		pressTab()
+		pressEnter()
+
+		time.Sleep(2000 * time.Millisecond)
+		gkeybd.TypeStr(request.NoBpjs)
 
 		return c.Status(200).JSON(fiber.Map{"message": "success"})
 	})
@@ -71,7 +67,7 @@ func main() {
 		}
 		filePath := getExePath(request.AppName)
 		cmd := exec.Command("TASKKILL", "/IM", filepath.Base(filePath), "/F")
-		_ = cmd.Run()
+		cmd.Run()
 		return c.Status(200).JSON(fiber.Map{"message": "success"})
 	})
 
