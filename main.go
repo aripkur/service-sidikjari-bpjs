@@ -45,7 +45,7 @@ func main() {
 		if err != nil {
 			return c.Status(500).JSON(fiber.Map{"message": err.Error()})
 		}
-		time.Sleep(3000 * time.Millisecond)
+		time.Sleep(4000 * time.Millisecond)
 
 		gkeybd.TypeStr(request.Username)
 		pressTab()
@@ -54,7 +54,7 @@ func main() {
 		pressTab()
 		pressEnter()
 
-		time.Sleep(2500 * time.Millisecond)
+		time.Sleep(3000 * time.Millisecond)
 		gkeybd.TypeStr(request.NoBpjs)
 
 		return c.Status(200).JSON(fiber.Map{"message": "success"})
