@@ -13,10 +13,12 @@ import (
 )
 
 type OpenRequest struct {
-	AppName  string `json:"app_name"`
-	Username string `json:"username"`
-	Password string `json:"password"`
-	NoBpjs   string `json:"no_bpjs"`
+	AppName      string `json:"app_name"`
+	AppOpenTime  int    `json:"app_open_time"`
+	AppLoginTime int    `json:"app_login_time"`
+	Username     string `json:"username"`
+	Password     string `json:"password"`
+	NoBpjs       string `json:"no_bpjs"`
 }
 type CloseRequest struct {
 	AppName string `json:"app_name"`
@@ -45,7 +47,7 @@ func main() {
 		if err != nil {
 			return c.Status(500).JSON(fiber.Map{"message": err.Error()})
 		}
-		time.Sleep(4000 * time.Millisecond)
+		time.Sleep(time.Duration(request.AppOpenTime) * time.Millisecond)
 
 		gkeybd.TypeStr(request.Username)
 		pressTab()
@@ -54,7 +56,7 @@ func main() {
 		pressTab()
 		pressEnter()
 
-		time.Sleep(3000 * time.Millisecond)
+		time.Sleep(time.Duration(request.AppLoginTime) * time.Millisecond)
 		gkeybd.TypeStr(request.NoBpjs)
 
 		return c.Status(200).JSON(fiber.Map{"message": "success"})
